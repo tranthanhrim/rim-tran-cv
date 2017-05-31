@@ -1,0 +1,78 @@
+<div ng-controller="mainController" layout="row" class="customBg" style="background-image:url(images/snow-mountain.jpg);"
+  ng-init="vm.init()">
+  <md-sidenav layout="column" class="sidenavBg md-sidenav-left" md-component-id="left" md-is-locked-open="$mdMedia('min-width: 600px')">
+    <div>
+      <img src="images/rim.jpg" class="item">
+    </div>
+    <md-list>
+      <md-item ng-repeat="item in vm.menu">
+        <!--<a ui-sref="{{item.link}}" class="removehl">-->
+        <md-item-content layout="row" style="outline: none; border: 0;" layout-align="start center" ng-click="vm.changeInfoToShow(item.link)">
+          <div style="width: 100vw; position: relative;" layout="row" md-ink-ripple="#92DD03">
+            <i class="material-icons" style="color: white; margin: auto 10px;">{{item.icon}}</i>
+            <div class="inset custom-item">{{item.title}}</div>
+          </div>
+        </md-item-content>
+        <!--</a>-->
+        <md-divider class="sidenavDi"></md-divider>
+      </md-item>
+    </md-list>
+  </md-sidenav>
+
+  <div layout="column" class="relative content-page" layout-fill role="main">
+    <md-toolbar style="background: rgba(0,0,0,0.5);" class="main-toolbar" layout="row">
+      <md-button md-ink-ripple="#FF0000" class="md-icon-button md-primary" hide-gt-xs aria-label="Settings" style="margin: auto;"
+        ng-click="vm.toggleSidenav('left')">
+        <i class="material-icons" style="color: white;">menu</i>
+      </md-button>
+      <div class="md-toolbar-tools">
+        <div class="title">
+          <h2>RIM TRAN - NEVER STOP MAKING AN EFFORT</h2>
+        </div>
+      </div>
+    </md-toolbar>
+    <md-content flex md-scroll-y class="md-content-bg main-toolbar">
+      <ui-view>
+        <div aria-labelledby="tab1" md-swipe-left="next()" md-swipe-right="previous()" layout="row" layout-align="center center">
+          <md-card class="md-card-bg" style="height: 100vh; width: 100vw; overflow-x: auto; margin: 8px 0px 8px 8px;">
+            <md-card-content style="margin-bottom: 100px;">
+              <section>
+                <div>
+                  <div class="heading text-center">
+                    <h2>{{vm.title}}</h2>
+                  </div>
+                  <div class="contact-info">
+                    <ul>
+                      <li ng-repeat="item in vm.infoToShow" class="formatData">
+                        <div layout="row" style="margin-top: 0.5em;">
+                          <!--<i class="fa {{item.icon}} fa-2x" style="font-size: 1.5em; margin-right: 0.5em;"></i>-->
+                          <i class="material-icons" style="margin-right: 0.5em;">{{item.icon}}</i>
+                          <div layout="row">
+                            <span ng-style="vm.widthHeaderItem">{{item.header}}</span>
+                            <span flex>{{item.content}}</span>
+                          </div>
+                        </div>
+                        <ul>
+                          <li ng-repeat="item2 in item.childList" class="formatData">
+                            <div layout="row" style="margin-left: 2em;">
+                              <!--<i class="fa {{item2.icon}} fa-2x" style="font-size: 1.5em; margin-right: 0.5em;"></i>-->
+                              <i class="material-icons" style="margin-right: 0.5em; font-size: 20px;">{{item2.icon}}</i>
+                              <div layout="row">
+                                <span style="width: 115px;">{{item2.header}}</span>
+                                <span flex>{{item2.content}}</span>
+                              </div>
+                            </div>
+                          </li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </section>
+            </md-card-content>
+          </md-card>
+        </div>
+      </ui-view>
+    </md-content>
+  </div>
+</div>
